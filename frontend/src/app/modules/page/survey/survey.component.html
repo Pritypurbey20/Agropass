@@ -1,0 +1,72 @@
+<main *ngIf="activePage === 'survey'" id="main" class="main">
+
+    <div class="modal-header">
+        <input type="text" [(ngModel)]="searchText" (keyup)="search($event)" class="form-control"
+            placeholder="Search...">
+
+        <div class="page col-md-1">
+            <select class="custom-select" (change)="changeNum($event)">
+                <option value="" disabled></option>
+                <option *ngFor="let num of Num" [ngValue]="num">{{num}}</option>
+            </select>
+        </div>
+
+        <span style="padding-left: 1em" class="opt"><a><button class="btn btn-outline-primary"
+            (click)="activePage = 'add-survey'">Add</button></a></span>
+    </div>
+   
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-6">
+
+                <div *ngFor="let survey of allSurveyData" class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="card-title">{{survey.surveyName}}</h5>
+                            </div>
+                            <div class="col-md-6" style="text-align:right; padding-top: 15px;"><button type="button" class="btn btn btn-danger mb-3" (click)="getSurveyData(survey)" data-bs-toggle="modal" data-bs-target="#deleteSurvey">Delete</button></div>
+                        </div>
+
+                        <p class="card-text">{{survey.surveyQuestion}}</p>
+                        <ol class="list-group list-group-numbered">
+                            <div *ngFor="let option of survey.surveyAnswerOptions | keyvalue" class="input-group has-validation">
+                                <span class="input-group-text" id="inputGroupPrepend">{{option.key}}</span>
+                                <li class="list-group-item">{{option.value}}
+                                </li>
+                            </div>
+                        </ol>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div style="position: relative;">
+        <ngb-pagination [(page)]="page" size="lg" [collectionSize]="totalRecords" [pageSize]="limit" (pageChange)="pageChange($event)"></ngb-pagination>
+    </div>
+</main>
+
+<div *ngIf="activePage === 'add-survey'">
+    <app-create-survey (cancelEvent)="redirectToSurveyPage()"></app-create-survey>
+</div>
+
+
+<div class="modal fade" id="deleteSurvey" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete crop type</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this Crop type?
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="deleteSurvey()">Yes </button>
+            </div>
+        </div>
+    </div>
+</div>

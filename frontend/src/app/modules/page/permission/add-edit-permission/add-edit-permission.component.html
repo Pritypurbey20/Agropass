@@ -1,0 +1,124 @@
+<main *ngIf="mode === 'add'" id="main" class="main" style="margin-top: 0px !important;">
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Create Permission</h5>
+
+                        <form [formGroup]="newPermissionForm">
+                            <div class="row mb-3">
+                                <label class="col-md-4 col-lg-3 col-form-label">Permission Name</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input type="text" class="form-control" formControlName="name">
+                                    <div *ngIf="isSubmitted && b['name'].errors" class="help-block">
+                                        <div *ngIf="b['name'].errors['required']" class="text-danger">{{nameRequired}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-md-4 col-lg-3 col-form-label">Select role</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select class="form-select" formControlName="roleId" id="roleId"
+                                        (change)="textchange($event)">
+                                        <option *ngFor="let role of roleData;" value={{role._id}}>
+                                            {{ role.slug }}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="isSubmitted && b['roleId'].errors" class="help-block">
+                                        <div *ngIf="b['roleId'].errors['required']" class="text-danger">{{roleRequired}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                <div class="col-3"> <input type="checkbox" formControlName="create" id="create">&nbsp;
+                                    <label for="security">create</label>
+                                </div>
+                                <div class="col-3"> <input type="checkbox" formControlName="read" id="read">&nbsp;
+                                    <label for="security">read</label>
+                                </div>
+                                <div class="col-3"> <input type="checkbox" formControlName="update" id="update">&nbsp;
+                                    <label for="security">update</label>
+                                </div>
+                                <div class="col-3"> <input type="checkbox" formControlName="delete" id="delete">&nbsp;
+                                    <label for="security">delete</label>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <button (click)="createPermission()" type="submit" class="btn btn-primary m-2">Submit</button>
+                                <button type="reset" class="btn btn-secondary m-2"
+                                    (click)="backTolisting()">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+<main *ngIf="mode === 'edit'" id="main" class="main" style="margin-top: 0px !important;">
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Edit Permission</h5>
+
+                        <form [formGroup]="updatePermissionForm">
+                            <div class="row mb-3">
+                                <label class="col-md-4 col-lg-3 col-form-label">Permisssion Name</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input type="text" class="form-control" formControlName="name">
+                                    <div *ngIf="isSubmitted && f['name'].errors" class="help-block">
+                                        <div *ngIf="f['name'].errors['required']" class="text-danger">{{nameRequired}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label  class="col-md-4 col-lg-3 col-form-label">Select role</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select class="form-select" formControlName="roleId" id="roleId"
+                                        (change)="textchange($event)">
+                                        <option *ngFor="let role of roleData;" value={{role._id}}>
+                                            {{ role.slug }}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="isSubmitted && f['roleId'].errors" class="help-block">
+                                        <div *ngIf="f['roleId'].errors['required']" class="text-danger">{{roleRequired}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                <div class="col-3"> <input type="checkbox" formControlName="create" id="create">&nbsp;
+                                    <label for="security">create</label>
+                                </div>
+                                <div class="col-3"> <input type="checkbox" formControlName="read" id="read">&nbsp;
+                                    <label for="security">read</label>
+                                </div>
+                                <div class="col-3"> <input type="checkbox" formControlName="update" id="update">&nbsp;
+                                    <label for="security">update</label>
+                                </div>
+                                <div class="col-3"> <input type="checkbox" formControlName="delete" id="delete">&nbsp;
+                                    <label for="security">delete</label>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <button (click)="updatePermission()" type="submit" class="btn btn-primary m-2">Save</button>
+                                <button type="reset" class="btn btn-secondary m-2"
+                                    (click)="backTolisting()">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

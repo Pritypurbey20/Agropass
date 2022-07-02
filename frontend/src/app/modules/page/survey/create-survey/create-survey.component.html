@@ -1,0 +1,61 @@
+<main id="main" class="main" style="margin-top: 80px !important;">
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-6">
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Add Survey</h5>
+
+            <form [formGroup]="newSurveyForm">
+              <div class="row mb-3">
+                <label for="surveyName">Survey Name</label>
+                <input type="text" formControlName="surveyName" class="form-control" placeholder="Enter survey name">
+                <div *ngIf="isSubmitted && f['surveyName'].errors" class="help-block">
+                  <div *ngIf="f['surveyName'].errors['required']" class="text-danger">{{surveyNameRequired}}</div>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="surveyQuestion">Survey Question</label>
+                <input type="text" formControlName="surveyQuestion" class="form-control"
+                  placeholder="Enter survey question">
+                <div *ngIf="isSubmitted && f['surveyQuestion'].errors" class="help-block">
+                  <div *ngIf="f['surveyQuestion'].errors['required']" class="text-danger">{{surveyQuestionRequired}}
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="surveyOptions">Survey Option</label>
+                <div class="input-group has-validation">
+                  <input type="text" formControlName="surveyOptions" class="form-control" (change)="textchange($event)"
+                    placeholder="Enter option">
+                  <button type="button" class="btn btn btn-primary mb-3">Add Option</button>
+                </div>
+
+                <ul class="row mb-3">
+                  <li *ngFor="let option of optionsArray">{{option}}<span class="close" 
+                      (click)="deleteOption(option)">x</span></li>
+                </ul>
+
+                <div *ngIf="isSubmitted && f['surveyOptions'].errors" class="help-block">
+                  <div *ngIf="f['surveyOptions'].errors['required']" class="text-danger">{{surveyAnswerOptionsRequired}}
+                  </div>
+                </div>
+              </div>
+
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary m-2" (click)="createSurvey()">Submit</button>
+                <button type="reset" class="btn btn-secondary m-2" (click)="backTolisting()">Cancel</button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>

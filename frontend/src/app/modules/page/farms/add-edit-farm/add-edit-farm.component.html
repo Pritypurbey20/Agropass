@@ -1,0 +1,124 @@
+<!-- add farm form -->
+<main *ngIf="mode === 'add'" id="main" class="main" style="margin-top: 0px !important;">
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Create Farm</h5>
+                        <form [formGroup]="newFarmForm">
+                            <div class="row mb-3">
+                                <label for="farmOwnerId" class="col-md-4 col-lg-3 col-form-label">Select User</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select class="form-select" formControlName="farmOwnerId" id="farmOwnerId" (change)="textchange($event)">
+                                        <option *ngFor="let user of userData;" value="{{user._id }}">
+                                            {{ user.firstName }}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="isSubmitted && f['farmOwnerId'].errors" class="help-block">
+                                        <div *ngIf="f['farmOwnerId'].errors['required']" class="text-danger">
+                                            {{selectUser}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="latitude" class="col-md-4 col-lg-3 col-form-label">Latitude</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input type="text" formControlName="latitude" class="form-control" placeholder="Enter latitude">
+                                    <div *ngIf="isSubmitted && f['latitude'].errors" class="help-block">
+                                        <div *ngIf="f['latitude'].errors['pattern']" class="text-danger">
+                                            {{invalidLatitude}}</div>
+                                        <div *ngIf="f['latitude'].errors['required']" class="text-danger">
+                                            {{latRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="longitude" class="col-md-4 col-lg-3 col-form-label">Longitude</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input type="text" formControlName="longitude" class="form-control" placeholder="Enter longitude">
+                                    <div *ngIf="isSubmitted && f['longitude'].errors" class="help-block">
+                                        <div *ngIf="f['longitude'].errors['pattern']" class="text-danger">
+                                            {{invalidLongitude}}</div>
+                                        <div *ngIf="f['longitude'].errors['required']" class="text-danger">
+                                            {{longRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <button (click)="createFarm()" type="submit" class="btn btn-primary m-2">Submit</button>
+                                <button type="reset" class="btn btn-secondary m-2" (click)="backTolisting()">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- edit farm form -->
+<main *ngIf="mode === 'edit'" id="main" class="main" style="margin-top: 0px !important;">
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Edit Farm</h5>
+
+                        <form [formGroup]="updateFarmForm">
+                            <div class="row mb-3">
+                                <label for="farmOwnerId" class="col-md-4 col-lg-3 col-form-label">Select User</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select class="form-select" formControlName="farmOwnerId" id="farmOwnerId" (change)="textchange($event)">
+                                        <option *ngFor="let user of userData;" value="{{user._id }}">
+                                            {{ user.firstName }}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="isSubmitted && b['farmOwnerId'].errors" class="help-block">
+                                        <div *ngIf="b['farmOwnerId'].errors['required']" class="text-danger">
+                                            {{selectUser}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="latitude" class="col-md-4 col-lg-3 col-form-label">Latitude</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input type="text" formControlName="latitude" class="form-control" placeholder="Enter latitude">
+                                    <div *ngIf="isSubmitted && b['latitude'].errors" class="help-block">
+                                        <div *ngIf="b['latitude'].errors['pattern']" class="text-danger">
+                                            {{invalidLatitude}}</div>
+                                        <div *ngIf="b['latitude'].errors['required']" class="text-danger">
+                                            {{latRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="longitude" class="col-md-4 col-lg-3 col-form-label">Longitude</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input type="text" formControlName="longitude" class="form-control" placeholder="Enter longitude">
+                                    <div *ngIf="isSubmitted && b['longitude'].errors" class="help-block">
+                                        <div *ngIf="b['longitude'].errors['pattern']" class="text-danger">
+                                            {{invalidLongitude}}</div>
+                                        <div *ngIf="b['longitude'].errors['required']" class="text-danger">
+                                            {{longRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <button (click)="updateFarm()" type="submit" class="btn btn-primary m-2">Save</button>
+                                <button type="reset" class="btn btn-secondary m-2" (click)="backTolisting()">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

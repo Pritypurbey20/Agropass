@@ -1,0 +1,136 @@
+<!-- add cropType form -->
+<main *ngIf="mode === 'add'" id="main" class="main" style="margin-top: 0px !important;">
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Create Crop</h5>
+
+                        <form [formGroup]="newCropForm">
+                            <div class="row mb-3">
+                                <label for="cropTypeName" class="col-md-4 col-lg-3 col-form-label">Crop Name</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input type="text" formControlName="cropName" class="form-control"
+                                        placeholder="Enter crop name">
+                                    <div *ngIf="isSubmitted && f['cropName'].errors" class="help-block">
+                                        <div *ngIf="f['cropName'].errors['required']" class="text-danger">
+                                            {{cropNameRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="cropType" class="col-md-4 col-lg-3 col-form-label">Crop Type</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select class="form-select" formControlName="cropType" id="farmOwnerId"
+                                        (change)="textchange($event)">
+                                        <option *ngFor="let cropType of cropTypeData;"
+                                            value="{{cropType.cropTypeName}}">
+                                            {{ cropType.cropTypeName }}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="isSubmitted && f['cropType'].errors" class="help-block">
+                                        <div *ngIf="f['cropType'].errors['required']" class="text-danger">
+                                            {{cropTypeRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="cropTypeName" class="col-md-4 col-lg-3 col-form-label">Crop Image</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input type="file" formControlName="cropImage" (change)="uploadImage($event)"
+                                        class="form-control" placeholder="Enter crop type">
+                                    <div *ngIf="isSubmitted && f['cropImage'].errors" class="help-block">
+                                        <div *ngIf="f['cropImage'].errors['required']" class="text-danger">
+                                            {{cropImageRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <button (click)="createCrop()" type="submit" class="btn btn-primary m-2">Submit</button>
+                                <button type="reset" class="btn btn-secondary m-2"
+                                    (click)="backTolisting()">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- edit cropType form -->
+<main *ngIf="mode === 'edit'" id="main" class="main" style="margin-top: 0px !important;">
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Edit Crop</h5>
+
+                        <form [formGroup]="updateCropForm">
+                            <div class="row mb-3">
+                                <label for="cropTypeName" class="col-md-4 col-lg-3 col-form-label">Crop Name</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input type="text" formControlName="cropName" class="form-control"
+                                        placeholder="Enter crop name">
+                                    <div *ngIf="isSubmitted && b['cropName'].errors" class="help-block">
+                                        <div *ngIf="b['cropName'].errors['required']" class="text-danger">
+                                            {{cropNameRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="cropType" class="col-md-4 col-lg-3 col-form-label">Crop Type</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select class="form-select" formControlName="cropType" id="farmOwnerId"
+                                        (change)="textchange($event)">
+                                        <option *ngFor="let cropType of cropTypeData;"
+                                            value="{{cropType.cropTypeName}}">
+                                            {{ cropType.cropTypeName }}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="isSubmitted && b['cropType'].errors" class="help-block">
+                                        <div *ngIf="b['cropType'].errors['required']" class="text-danger">
+                                            {{cropTypeRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+
+                                <label for="cropTypeName" class="col-md-4 col-lg-3 col-form-label">Crop Image</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <div><a>
+                                            <img *ngIf="editImg === ''"
+                                                src="http://localhost:4999/uploads/crops/{{cropById.cropImage}}"
+                                                width="50" height="50">
+
+                                            <img *ngIf="editImg === 'editImage'" 
+                                                [src]="imageSrc || 'http://placehold.it/180'" width="50" height="50" />
+                                        </a>
+
+                                        <div>
+                                            <label for="files" class="btn btn-primary m-2">Select
+                                                Image</label>
+                                            <input formControlName="cropImage" id="files" (change)="editImage($event)"
+                                                style="visibility:hidden;" type="file">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <button (click)="updateCrop()" type="submit" class="btn btn-primary m-2">Save</button>
+                                <button type="reset" class="btn btn-secondary m-2"
+                                    (click)="backTolisting()">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

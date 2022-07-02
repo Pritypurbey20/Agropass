@@ -1,0 +1,49 @@
+<main id="main" class="main" >
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Send Message Areawise</h5>
+                        <form [formGroup]="sendMsgForm">
+                            <div class="row mb-3">
+                                <label for="areaId" class="col-md-4 col-lg-3 col-form-label">Select area</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select class="form-select" formControlName="areaId" id="areaId">
+                                        <option *ngFor="let area of areaData;" value="{{ area._id}}">
+                                            {{ area.areaName }}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="isSubmitted && f['areaId'].errors" class="help-block">
+                                        <div *ngIf="f['areaId'].errors['required']" class="text-danger">
+                                            {{areaIdRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="surveyId" class="col-md-4 col-lg-3 col-form-label">Select Survey question</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select class="form-select" formControlName="surveyId" id="surveyId">
+                                        <option *ngFor="let survey of allSurveyData;" value="{{ survey._id}}">
+                                            {{ survey.surveyQuestion }}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="isSubmitted && f['surveyId'].errors" class="help-block">
+                                        <div *ngIf="f['surveyId'].errors['required']" class="text-danger">
+                                            {{surveyIdRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <button (click)="sendMessage()" type="submit"
+                                    class="btn btn-primary ">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

@@ -1,0 +1,137 @@
+<main *ngIf="mode === 'add'" id="main" class="main" style="margin-top: 0px !important;">
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Add Area</h5>
+                        <form [formGroup]="newAreaForm">
+                            <div class="row mb-3">
+                                <label for="areaName" class="col-md-4 col-lg-3 col-form-label">Area Name</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="areaName" type="text" formControlName="areaName" class="form-control">
+                                    <div *ngIf="isSubmitted && f['areaName'].errors" class="help-block">
+                                        <div *ngIf="f['areaName'].errors['required']" class="text-danger">
+                                            {{areaNameRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="state" class="col-md-4 col-lg-3 col-form-label">Select State</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select class="form-select" formControlName="state" id="state"
+                                        (change)="stateChange($event)">
+                                        <option *ngFor="let state of loactionData.states;" value={{state.state}}>
+                                            {{ state.state }}
+                                        </option>
+
+                                    </select>
+
+                                    <div *ngIf="isSubmitted && f['state'].errors" class="help-block">
+                                        <div *ngIf="f['state'].errors['required']" class="text-danger">{{stateRequired}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="district" class="col-md-4 col-lg-3 col-form-label">Select district</label>
+                                <div class="col-md-8 col-lg-9">
+
+                                    <select class="form-select" formControlName="district" id="district"
+                                        (change)="districtChange($event)">
+                                        <option *ngFor="let district of districtData;" value={{district}}>
+                                            {{ district }}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="isSubmitted && f['district'].errors" class="help-block">
+                                        <div *ngIf="f['district'].errors['required']" class="text-danger">
+                                            {{districtRequired}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <button (click)="createArea()" type="submit" class="btn btn-primary m-2">Submit</button>
+                                <button type="reset" class="btn btn-secondary m-2"
+                                    (click)="backTolisting()">Cancel</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>I
+
+<main *ngIf="mode === 'edit'" id="main" class="main" style="margin-top: 0px !important;">
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Edit Area</h5>
+                        <form [formGroup]="UpdateAreaForm">
+                            <div class="row mb-3">
+                                <label for="areaName" class="col-md-4 col-lg-3 col-form-label">Area Name</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="areaName" type="text" formControlName="areaName" class="form-control">
+                                    <div *ngIf="isSubmitted && b['areaName'].errors" class="help-block">
+                                        <div *ngIf="b['areaName'].errors['required']" class="text-danger">
+                                            {{areaNameRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="state" class="col-md-4 col-lg-3 col-form-label">Select State</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select class="form-select" formControlName="state" id="state"
+                                        (change)="stateChange($event)">
+                                        <option *ngFor="let state of loactionData.states;" value={{state.state}}>
+                                            {{ state.state }}
+                                        </option>
+
+                                    </select>
+
+                                    <div *ngIf="isSubmitted && b['state'].errors" class="help-block">
+                                        <div *ngIf="b['state'].errors['required']" class="text-danger">{{stateRequired}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="district" class="col-md-4 col-lg-3 col-form-label">Select district</label>
+                                <div class="col-md-8 col-lg-9">
+
+                                    <select class="form-select" formControlName="district" id="district"
+                                        (change)="districtChange($event)">
+                                        <option *ngFor="let district of districtData;" value={{district}}>
+                                            {{ district }}
+                                        </option>
+                                    </select>
+
+                                    <div *ngIf="isSubmitted && b['district'].errors" class="help-block">
+                                        <div *ngIf="b['district'].errors['required']" class="text-danger">
+                                            {{districtRequired}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <button (click)="updateArea()" type="submit" class="btn btn-primary m-2">Submit</button>
+                                <button type="reset" class="btn btn-secondary m-2"
+                                    (click)="backTolisting()">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

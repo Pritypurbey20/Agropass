@@ -1,0 +1,2864 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "INMEANTTYPESCRIPT",
+        "description": "INMEANTTYPESCRIPT APPLICATION API"
+    },
+    "host": "localhost:5000",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "Auth",
+            "description": "APIs that called by Auth."
+        },
+        {
+            "name": "Users",
+            "description": "APIs that called by Admin."
+        },
+        {
+            "name": "Roles",
+            "description": "APIs to manage Roles."
+        },
+        {
+            "name": "Permissions",
+            "description": "APIs to manage Permissions."
+        },
+        {
+            "name": "Crops",
+            "description": "APIs to manage Crops."
+        },
+        {
+            "name": "Farms",
+            "description": "APIs to manage Farms."
+        },
+        {
+            "name": "CropTypes",
+            "description": "APIs to manage CropTypes."
+        },
+        {
+            "name": "Surveys",
+            "description": "APIs to manage survey."
+        },
+        {
+            "name": "Distillery",
+            "description": "APIs to manage distillery."
+        },
+        {
+            "name": "Purchase",
+            "description": "APIs to manage purchase."
+        },
+        {
+            "name": "AreaNumber",
+            "description": "APIs to manage areaName."
+        },
+        {
+            "name": "Area",
+            "description": "APIs to manage area."
+        },
+        {
+            "name":"Payment",
+            "description":"APIs to manage payment."
+        },
+        {
+            "name":"WhatsApp",
+            "description":"Send messages on WhatsApp."
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "servers": [
+        {
+            "url": "http://localhost:4999/",
+            "description": "Local Server"
+        }
+    ],
+    "paths": {
+        "/api/v1/users/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User and Admin Login",
+                "description": "Login will be common in our system.\n - After login an authentication token will be generated using JWT.\n - Token will be required for after login api's  like update, delete and other.",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "User that want to login.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string",
+                                    "example": "test@infistack.com"
+                                },
+                                "password": {
+                                    "type": "string",
+                                    "example": "test@111"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": "application/json"
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "constVariable.http.Ok": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "No information provided"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    },
+                    "500": {
+                        "description": "Client error"
+                    }
+                }
+            }
+        },
+        "/api/v1/users/signup": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User and Admin Signup",
+                "description": "Signup will be common in our system.\n - After Signup an authentication token will be generated using JWT.\n - Token will be required for after Signup api's  like update, delete and other.",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "User that want to Signup.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "firstName": {
+                                    "type": "string",
+                                    "example": "test"
+                                },
+                                "lastName": {
+                                    "type": "string",
+                                    "example": "Infi"
+                                },
+                                "email": {
+                                    "type": "string",
+                                    "example": "test@infistack.com"
+                                },
+                                "roleId": {
+                                    "type": "string",
+                                    "example": "62e2o3g45h5r5t4h43j3u23c"
+                                },
+                                "password": {
+                                    "type": "string",
+                                    "example": "test@111"
+                                },
+                                "passwordConfirm": {
+                                    "type": "string",
+                                    "example": "test@111"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": "application/json"
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "constVariable.http.Ok": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "No information provided"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    },
+                    "500": {
+                        "description": "Client error"
+                    },
+                    "409": {
+                        "description": "User Already Exits"
+                    }
+                }
+            }
+        },
+        "/api/v1/users/forgotPassword": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "description": "if User want ro forgot the password.",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "User that want to forgot the password.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string",
+                                    "example": "test1@infistack.com"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": "application/json"
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "constVariable.http.Ok": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "No information provided"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    },
+                    "500": {
+                        "description": "Client error"
+                    }
+                }
+            }
+        },
+        "/api/v1/users/resetPassword/{token}": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "description": "if User want ro forgot the password.",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "path",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "token"
+                        }
+                    },
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "User that want to forgot the password.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "password": {
+                                    "type": "string",
+                                    "example": "newpassword"
+                                },
+                                "passwordConfirm": {
+                                    "type": "string",
+                                    "example": "newpassword"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": "application/json"
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "constVariable.http.Ok": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "No information provided"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    },
+                    "500": {
+                        "description": "Client error"
+                    }
+                }
+            }
+        },
+        "/api/v1/users/{id}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get user by Id",
+                "description": "Get all specialties",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "permissionId",
+                        "in": "query",
+                        "description": "Specialties id that needs to be edited ",
+                        "required": true,
+                        "type": "string",
+                        "properties": "permissionId"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Specialties id that needs to be edited ",
+                        "required": true,
+                        "type": "string",
+                        "properties": "id"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Delete User by Id",
+                "description": "Get all specialties",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "permissionId",
+                        "in": "query",
+                        "description": "Specialties id that needs to be edited ",
+                        "required": true,
+                        "type": "string",
+                        "properties": "permissionId"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Specialties id that needs to be edited ",
+                        "required": true,
+                        "type": "string",
+                        "properties": "id"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "update user details by id",
+                "description": "Get all specialties",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "permissionId",
+                        "in": "query",
+                        "description": "Specialties id that needs to be edited ",
+                        "type": "string",
+                        "properties": "permissionId"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Specialties id that needs to be edited ",
+                        "required": true,
+                        "type": "string",
+                        "properties": "id"
+                    },
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "User that want to login.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "example": "user"
+                                },
+                                "lastName": {
+                                    "type": "string",
+                                    "example": "user"
+                                },
+                                "firstName": {
+                                    "type": "string",
+                                    "example": "user"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            }
+        },
+        "/api/v1/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get all users",
+                "description": "Update Specific User",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    }
+                ],
+                "responses": {
+                    "constVariable.http.Ok": {
+                        "description": "User list fetched"
+                    },
+                    "500": {
+                        "description": "Client error"
+                    },
+                    "401": {
+                        "description": "Access Denied"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get all specialties",
+                "description": "Get all specialties",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "permissionId",
+                        "in": "query",
+                        "description": "Specialties id that needs to be edited ",
+                        "required": true,
+                        "type": "string",
+                        "properties": "permissionId"
+                    },
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "User that want to login.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "example": "user"
+                                },
+                                "email": {
+                                    "type": "string",
+                                    "example": "test@gmail.com"
+                                },
+                                "password": {
+                                    "type": "string",
+                                    "example": "user"
+                                },
+                                "passwordConfirm": {
+                                    "type": "string",
+                                    "example": "user"
+                                },
+                                "lastName": {
+                                    "type": "string",
+                                    "example": "user"
+                                },
+                                "firstName": {
+                                    "type": "string",
+                                    "example": "user"
+                                },
+                                "roleId": {
+                                    "type": "string",
+                                    "example": "629085edcd1fcd66ec00f7fd"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            }
+        },
+        "/api/v1/roles/{id}": {
+            "get": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Get roles by id",
+                "description": "Get all specialties",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Specialties id that needs to be edited ",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Delete role by id",
+                "description": "Get all specialties",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Specialties id that needs to be edited ",
+                        "required": true,
+                        "type": "string",
+                        "properties": "id"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            }
+        },
+        "/api/v1/roles": {
+            "post": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Create role",
+                "description": "Get all specialties",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "User that want to login.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "example": "admin"
+                                },
+                                "slug": {
+                                    "type": "string",
+                                    "example": "admin"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Get all roles",
+                "description": "Get all specialties",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            }
+        },
+        "/api/v1/permissions/{id}": {
+            "delete": {
+                "tags": [
+                    "Permissions"
+                ],
+                "summary": "Delete permission by id",
+                "description": "Delete specialties by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Specialties id that needs to be edited ",
+                        "required": true,
+                        "type": "string",
+                        "properties": "id"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successly deleted"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Permissions"
+                ],
+                "summary": "Get all specialties",
+                "description": "Get all specialties",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Specialties id that needs to be edited ",
+                        "required": true,
+                        "type": "string",
+                        "properties": "id"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            }
+        },
+        "/api/v1/permissions/": {
+            "post": {
+                "tags": [
+                    "Permissions"
+                ],
+                "summary": "create permission",
+                "description": "Login will be common in our system.\n - After login an authentication token will be generated using JWT.\n - Token will be required for after login api's  like update, delete and other.",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "User that want to login.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "example": "user"
+                                },
+                                "resources_roles": {
+                                    "type": "array",
+                                    "example": [
+                                        {
+                                            "roleId": "629085edcd1fcd66ec00f7fd",
+                                            "roles_name": "admin",
+                                            "create": true,
+                                            "delete": true,
+                                            "update": true,
+                                            "read": true
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": "application/json"
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "constVariable.http.Ok": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "No information provided"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    },
+                    "500": {
+                        "description": "Client error"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Permissions"
+                ],
+                "summary": "get permissions",
+                "description": "Delete specialties by id",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successly deleted"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            }
+        },
+        "/api/v1/crops/{id}": {
+            "delete": {
+                "tags": [
+                    "Crops"
+                ],
+                "summary": "Delete crop by id",
+                "description": "Delete crop by id",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of the crop that needs to be deleted ",
+                        "required": true,
+                        "type": "string",
+                        "properties": "id"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully deleted"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Crops"
+                ],
+                "summary": "Get all crops",
+                "description": "Get all specialties",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id to get data",
+                        "required": true,
+                        "type": "string",
+                        "properties": "id"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Crops"
+                ],
+                "summary": "Edit crops",
+                "description": "Edit crops",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id to get data",
+                        "required": true,
+                        "type": "string",
+                        "properties": "id"
+                    },
+                    {
+                        "name": "crop",
+                        "in": "body",
+                        "description": "Details of the crop that needs to be edited.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "cropName": {
+                                    "type": "string",
+                                    "example": "rice"
+                                },
+                                "cropType": {
+                                    "type": "string",
+                                    "example": "grains"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            }
+        },
+        "/api/v1/crops": {
+            "post": {
+                "tags": [
+                    "Crops"
+                ],
+                "summary": "create crop",
+                "description": "To create new crop",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "crop",
+                        "in": "body",
+                        "description": "Details of the crop that needs to be created.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "cropName": {
+                                    "type": "string",
+                                    "example": "rice"
+                                },
+                                "cropType": {
+                                    "type": "string",
+                                    "example": "grains"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Crops"
+                ],
+                "summary": "Get all crops",
+                "description": "Get all specialties",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            }
+        },
+        "/api/v1/farms/{id}": {
+            "delete": {
+                "tags": [
+                    "Farms"
+                ],
+                "summary": "Delete farm by id",
+                "description": "Delete farm by id",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of the farm that needs to be deleted ",
+                        "required": true,
+                        "type": "string",
+                        "properties": "id"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successly deleted"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Farms"
+                ],
+                "summary": "Get all farms",
+                "description": "Get all farms",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id to get data",
+                        "required": true,
+                        "type": "string",
+                        "properties": "id"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Farms"
+                ],
+                "summary": "Edit farm",
+                "description": "Edit farm",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id to get data",
+                        "required": true,
+                        "type": "string",
+                        "properties": "id"
+                    },
+                    {
+                        "name": "farm",
+                        "in": "body",
+                        "description": "User that want to login.",
+                        "parameters": [
+                            {
+                                "name": "farm",
+                                "in": "body",
+                                "description": "Details of the farm that needs to be edited.",
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "latitude": {
+                                            "type": "number",
+                                            "example": "290.23423"
+                                        },
+                                        "longitude": {
+                                            "type": "number",
+                                            "example": "290.23412"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            }
+        },
+        "/api/v1/farms": {
+            "post": {
+                "tags": [
+                    "Farms"
+                ],
+                "summary": "create farm",
+                "description": "To create new farm",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "farm",
+                        "in": "body",
+                        "description": "Details of the farm that needs to be created.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "latitude": {
+                                    "type": "number",
+                                    "example": "290.23423"
+                                },
+                                "longitude": {
+                                    "type": "number",
+                                    "example": "290.23412"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Farms"
+                ],
+                "summary": "Get all farms",
+                "description": "Get all farms",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            }
+        },
+        "/api/v1/surveys/{id}": {
+            "get": {
+                "tags": [
+                    "Surveys"
+                ],
+                "summary": "Get all surveys",
+                "description": "Get all surveys",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Surveys"
+                ],
+                "summary": "Edit survey",
+                "description": "Edit survey",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id to get data",
+                        "required": true,
+                        "type": "string",
+                        "properties": "id"
+                    },
+                    {
+                        "name": "survey",
+                        "in": "body",
+                        "description": "survey that needs to be edited.",
+                        "parameters": [
+                            {
+                                "name": "survey",
+                                "in": "body",
+                                "description": "Details of the survey that needs to be edited.",
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "latitude": {
+                                            "type": "number",
+                                            "example": "290.23423"
+                                        },
+                                        "longitude": {
+                                            "type": "number",
+                                            "example": "290.23412"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Surveys"
+                ],
+                "summary": "Delete survey",
+                "description": "Delete survey",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id to get data",
+                        "required": true,
+                        "type": "string",
+                        "properties": "id"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            }
+        },
+        "api/v1/surveys": {
+            "post": {
+                "tags": [
+                    "Surveys"
+                ],
+                "summary": "Create survey",
+                "description": "Create survey",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "survey",
+                        "in": "body",
+                        "description": "Details of the survey that needs to be created.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "surveyName": {
+                                    "type": "string",
+                                    "example": "Crops"
+                                },
+                                "surveyQuestion": {
+                                    "type": "string",
+                                    "example": "Are you a farmer?"
+                                },
+                                "surveyAnswerOptions": {
+                                    "type": "string",
+                                    "example": "Yes"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Surveys"
+                ],
+                "summary": "Get all surveys",
+                "description": "Get all surveys",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            }
+        },
+        "api/v1/cropTypes/{id}": {
+            "get": {
+                "tags": [
+                    "CropTypes"
+                ],
+                "summary": "Get all crop types",
+                "description": "Get all crop types",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "CropTypes"
+                ],
+                "summary": "Delete crop type",
+                "description": "Delete crop type",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id to get data",
+                        "required": true,
+                        "type": "string",
+                        "properties": "id"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "CropTypes"
+                ],
+                "summary": "Edit crop type",
+                "description": "Edit crop type",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id to get data",
+                        "required": true,
+                        "type": "string",
+                        "properties": "id"
+                    },
+                    {
+                        "name": "cropType",
+                        "in": "body",
+                        "description": "crop type that needs to be edited.",
+                        "parameters": [
+                            {
+                                "name": "cropType",
+                                "in": "body",
+                                "description": "Details of the crop type that needs to be edited.",
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "cropTypeName": {
+                                            "type": "string",
+                                            "example": "Cotton"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            }
+        },
+        "api/v1/cropType": {
+            "post": {
+                "tags": [
+                    "CropTypes"
+                ],
+                "summary": "Create crop type",
+                "description": "Create crop type",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "cropType",
+                        "in": "body",
+                        "description": "Details of the crop type that needs to be created.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "cropTypeName": {
+                                    "type": "string",
+                                    "example": "Cotton"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "CropTypes"
+                ],
+                "summary": "Get all crop types",
+                "description": "Get all crop types",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            }
+        },
+        "api/v1/area/{id}": {
+            "delete": {
+                "tags": [
+                    "Area"
+                ],
+                "summary": "Delete area",
+                "description": "Delete area",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id to get data",
+                        "required": true,
+                        "type": "string",
+                        "properties": "id"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Area"
+                ],
+                "summary": "Get area",
+                "description": "Get area",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id to get data",
+                        "required": true,
+                        "type": "string",
+                        "properties": "id"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Area"
+                ],
+                "summary": "Edit area",
+                "description": "Edit area",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id to get data",
+                        "required": true,
+                        "type": "string",
+                        "properties": "id"
+                    },
+                    {
+                        "name": "area",
+                        "in": "body",
+                        "description": "area that needs to be edited.",
+                        "parameters": [
+                            {
+                                "name": "area",
+                                "in": "body",
+                                "description": "Details of the area that needs to be created.",
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "areaName": {
+                                            "type": "string",
+                                            "example": "shivajinagar"
+                                        },
+                                        "state": {
+                                            "type": "string",
+                                            "example": "karnataka"
+                                        },
+                                        "district": {
+                                            "type": "string",
+                                            "example": "bangalore"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            }
+        },
+        "api/v1/area": {
+            "post": {
+                "tags": [
+                    "Area"
+                ],
+                "summary": "Create area",
+                "description": "Create area",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "area",
+                        "in": "body",
+                        "description": "Details of the area that needs to be created.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "areaName": {
+                                    "type": "string",
+                                    "example": "shivajinagar"
+                                },
+                                "state": {
+                                    "type": "string",
+                                    "example": "karnataka"
+                                },
+                                "district": {
+                                    "type": "string",
+                                    "example": "bangalore"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Area"
+                ],
+                "summary": "Get all area",
+                "description": "Get all area",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            }
+        },
+        "api/v1/distillery/{id}": {
+            "delete": {
+                "tags": [
+                    "Distillery"
+                ],
+                "summary": "Delete distillery",
+                "description": "Delete distillery",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id to get data",
+                        "required": true,
+                        "type": "string",
+                        "properties": "id"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Distillery"
+                ],
+                "summary": "Get distillery",
+                "description": "Get distillery",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id to get data",
+                        "required": true,
+                        "type": "string",
+                        "properties": "id"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Distillery"
+                ],
+                "summary": "Edit distillery",
+                "description": "edit distillery",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id to get data",
+                        "required": true,
+                        "type": "string",
+                        "properties": "id"
+                    },
+                    {
+                        "name": "distillery",
+                        "in": "body",
+                        "description": "distillery that needs to be edited.",
+                        "parameters": [
+                            {
+                                "name": "distillery",
+                                "in": "body",
+                                "description": "Details of the distillery that needs to be created.",
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "distilleryOwnerId": {
+                                            "type": "string",
+                                            "example": "628f8e86b396204098cc27a9"
+                                        },
+                                        "distilleryBatchFor": {
+                                            "type": "string",
+                                            "example": "Rice"
+                                        },
+                                        "dispatchDate": {
+                                            "type": "date",
+                                            "example": "2020-01-01"
+                                        }
+                                    }
+                                }
+                            }
+                        ],
+                        "produces": [
+                            "application/json"
+                        ],
+                        "responses": {
+                            "200": {
+                                "description": "Success"
+                            },
+                            "404": {
+                                "description": "No data found"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "api/v1/distillery": {
+            "post": {
+                "tags": [
+                    "Distillery"
+                ],
+                "summary": "Create distillery",
+                "description": "Create distillery",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "distillery",
+                        "in": "body",
+                        "description": "Details of the distillery that needs to be created.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "distilleryOwnerId": {
+                                    "type": "string",
+                                    "example": "628f8e86b396204098cc27a9"
+                                },
+                                "distilleryBatchFor": {
+                                    "type": "string",
+                                    "example": "Rice"
+                                },
+                                "dispatchDate": {
+                                    "type": "date",
+                                    "example": "2020-01-01"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Distillery"
+                ],
+                "summary": "Get all distillery",
+                "description": "Get all distillery",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            }
+        },
+        "api/v1/purchase/{id}": {
+            "delete": {
+                "tags": [
+                    "Purchase"
+                ],
+                "summary": "Delete purchase",
+                "description": "Delete purchase",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id to get data",
+                        "required": true,
+                        "type": "string",
+                        "properties": "id"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Purchase"
+                ],
+                "summary": "Get purchase",
+                "description": "Get purchase",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id to get data",
+                        "required": true,
+                        "type": "string",
+                        "properties": "id"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Purchase"
+                ],
+                "summary": "Edit purchase",
+                "description": "edit purchase",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id to get data",
+                        "required": true,
+                        "type": "string",
+                        "properties": "id"
+                    },
+                    {
+                        "name": "purchase",
+                        "in": "body",
+                        "description": "purchase that needs to be edited.",
+                        "parameters": [
+                            {
+                                "name": "purchase",
+                                "in": "body",
+                                "description": "Details of the purchase that needs to be created.",
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "userName": {
+                                            "type": "id",
+                                            "example": "628f8e86b396204098cc27a9"
+                                        },
+                                        "farmer": {
+                                            "type": "id",
+                                            "example": "628f8e86b396204098cc27a9"
+                                        },
+                                        "quantity": {
+                                            "type": "number",
+                                            "example": "10"
+                                        },
+                                        "quality": {
+                                            "type": "number",
+                                            "example": "9"
+                                        },
+                                        "pricePerUnit": {
+                                            "type": "number",
+                                            "example": "10"
+                                        },
+                                        "inceptionDate": {
+                                            "type": "date",
+                                            "example": "2020-01-01"
+                                        },
+                                        "inceptionResult": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        },
+                                        "revisedPrice": {
+                                            "type": "number",
+                                            "example": "10"
+                                        },
+                                        "notes": {
+                                            "type": "string",
+                                            "example": "Nice"
+                                        },
+                                        "paymentMode": {
+                                            "type": "string",
+                                            "example": "Cash"
+                                        },
+                                        "paymentStatus": {
+                                            "type": "string",
+                                            "example": "Paid"
+                                        },
+                                        "distilleryBatch": {
+                                            "type": "id",
+                                            "example": "628f8e86b396204098cc27a9"
+                                        },
+                                        "deliveryDateToDistillery": {
+                                            "type": "date",
+                                            "example": "2020-01-01"
+                                        },
+                                        "dateOfPurchase": {
+                                            "type": "date",
+                                            "example": "2020-01-01"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            }
+        },
+        "api/v1/purchase": {
+            "get": {
+                "tags": [
+                    "Purchase"
+                ],
+                "summary": "Get all purchase",
+                "description": "Get all purchase",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Purchase"
+                ],
+                "summary": "Create purchase",
+                "description": "create purchase",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "purchase",
+                        "in": "body",
+                        "description": "purchase that needs to be createed.",
+                        "parameters": [
+                            {
+                                "name": "purchase",
+                                "in": "body",
+                                "description": "Details of the purchase that needs to be created.",
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "userName": {
+                                            "type": "id",
+                                            "example": "628f8e86b396204098cc27a9"
+                                        },
+                                        "farmer": {
+                                            "type": "id",
+                                            "example": "628f8e86b396204098cc27a9"
+                                        },
+                                        "quantity": {
+                                            "type": "number",
+                                            "example": "10"
+                                        },
+                                        "quality": {
+                                            "type": "number",
+                                            "example": "9"
+                                        },
+                                        "pricePerUnit": {
+                                            "type": "number",
+                                            "example": "10"
+                                        },
+                                        "inceptionDate": {
+                                            "type": "date",
+                                            "example": "2020-01-01"
+                                        },
+                                        "inceptionResult": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        },
+                                        "revisedPrice": {
+                                            "type": "number",
+                                            "example": "10"
+                                        },
+                                        "notes": {
+                                            "type": "string",
+                                            "example": "Nice"
+                                        },
+                                        "paymentMode": {
+                                            "type": "string",
+                                            "example": "Cash"
+                                        },
+                                        "paymentStatus": {
+                                            "type": "string",
+                                            "example": "Paid"
+                                        },
+                                        "distilleryBatch": {
+                                            "type": "id",
+                                            "example": "628f8e86b396204098cc27a9"
+                                        },
+                                        "deliveryDateToDistillery": {
+                                            "type": "date",
+                                            "example": "2020-01-01"
+                                        },
+                                        "dateOfPurchase": {
+                                            "type": "date",
+                                            "example": "2020-01-01"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            }
+        },
+        "api/v1/areaNumber/{id}": {
+            "get": {
+                "tags": [
+                    "AreaNumber"
+                ],
+                "summary": "Get area number",
+                "description": "Get area number",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of the area number",
+                        "schema": {
+                            "type": "string",
+                            "properties": "id"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "AreaNumber"
+                ],
+                "summary": "Delete area number",
+                "description": "Delete area number",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of the area number",
+                        "schema": {
+                            "type": "string",
+                            "properties": "id"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "AreaNumber"
+                ],
+                "summary": "Update area number",
+                "description": "Update area number",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of the area number",
+                        "schema": {
+                            "type": "string",
+                            "properties": "id"
+                        }
+                    },
+                    {
+                        "name": "areaNumber",
+                        "in": "body",
+                        "description": "area number that needs to be updated.",
+                        "parameters": [
+                            {
+                                "name": "areaNumber",
+                                "in": "body",
+                                "description": "Details of the area number that needs to be updated.",
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "mobileNumber": {
+                                            "type": "number",
+                                            "example": "1"
+                                        },
+                                        "countyCode": {
+                                            "type": "string",
+                                            "example": "+91"
+                                        },
+                                        "areaId": {
+                                            "type": "id",
+                                            "example": "628f8e86b396204098cc27a9"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            }
+        },
+        "api/v1/areaNumber": {
+            "post": {
+                "tags": [
+                    "AreaNumber"
+                ],
+                "summary": "Create area number",
+                "description": "Create area number",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "areaNumber",
+                        "in": "body",
+                        "description": "Details of the area number that needs to be created.",
+                        "parameters": [
+                            {
+                                "name": "areaNumber",
+                                "in": "body",
+                                "description": "Details of the area number that needs to be created.",
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "mobileNumber": {
+                                            "type": "number",
+                                            "example": "1"
+                                        },
+                                        "countyCode": {
+                                            "type": "string",
+                                            "example": "+91"
+                                        },
+                                        "areaId": {
+                                            "type": "id",
+                                            "example": "628f8e86b396204098cc27a9"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "AreaNumber"
+                ],
+                "summary": "Get all area numbers",
+                "description": "Get all area numbers",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            }
+        },
+        "api/v1/payment": {
+            "get": {
+                "tags": [
+                    "Payment"
+                ],
+                "summary": "Get all payments",
+                "description": "Get all payments",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            },
+            "post":{
+                "tags": [
+                    "Payment"
+                ],
+                "summary": "Create payment",
+                "description": "Create payment",
+                "parameters":[
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "payment",
+                        "in": "body",
+                        "description": "Details of the payment that needs to be created.",
+                        "schema":{
+                            "properties":{
+                                "purchaseId":{
+                                    "type":"id",
+                                    "example":"628f8e86b396204098cc27a9"
+                                },
+                                "paymentMode":{
+                                    "type":"string",
+                                    "example":"cash"
+                                },
+                                "DateOfPurchase":{
+                                    "type":"string",
+                                    "example":"2020-01-01"
+                                },
+                                "amount":{
+                                    "type":"number",
+                                    "example":"1"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            }
+        },
+        "api/v1/payment/{id}":{
+            "get":{
+                "tags": [
+                    "Payment"
+                ],
+                "summary": "Get payment by id",
+                "description": "Get payment by id",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of the payment",
+                        "schema": {
+                            "type": "id",
+                            "example": "628f8e86b396204098cc27a9"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            },
+            "delete":{
+                "tags": [
+                    "Payment"
+                ],
+                "summary": "Delete payment by id",
+                "description": "Delete payment by id",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of the payment",
+                        "schema": {
+                            "type": "id",
+                            "example": "628f8e86b396204098cc27a9"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            }
+        },
+        "api/v1/whatsApp/surveyMessage":{
+            "post":{
+                "tags": [
+                    "WhatsApp"
+                ],
+                "summary": "Send survey message",
+                "description": "Send survey message",
+                "parameters":[
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token for auhtorization",
+                        "schema": {
+                            "type": "string",
+                            "properties": "Authorization"
+                        }
+                    },
+                    {
+                        "name": "surveyMessage",
+                        "in": "body",
+                        "description": "Send Survey message to area wise numbers",
+                        "schema":{
+                            "properties":{
+                                "areaId":{
+                                    "type":"id",
+                                    "example":"628f8e86b396204098cc27a9"
+                                },
+                                "surveyId":{
+                                    "type":"id",
+                                    "example":"628f8e86b396204098cc27a9"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "No data found"
+                    }
+                }
+            }
+        }
+    }
+}

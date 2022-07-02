@@ -1,0 +1,131 @@
+<main *ngIf="mode === 'add'" id="main" class="main" style="margin-top: 0px !important;">
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Add Number</h5>
+                        <form [formGroup]="addNumberForm">
+                            <div class="row mb-3">
+                                <label for="mobileNumber" class="col-md-4 col-lg-3 col-form-label">Mobile
+                                    number</label>
+                                <div class="col-md-2 col-lg-2">
+                                    <select class="form-select small" formControlName="countyCode" id="countyCode">
+                                        <option *ngFor="let code of countryCodeList.codes;" value="{{code.dial_code}}">
+                                            {{ code.dial_code }}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="isSubmitted && f['countyCode'].errors" class="help-block">
+                                        <div *ngIf="f['countyCode'].errors['required']" class="text-danger">
+                                            {{countryCodeRequired}}</div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-7 col-lg-7">
+                                    <input name="mobileNumber" type="tel" formControlName="mobileNumber"
+                                        class="form-control" maxlength="10">
+                                    <div *ngIf="isSubmitted && f['mobileNumber'].errors" class="help-block">
+                                        <div *ngIf="f['mobileNumber'].errors['required']" class="text-danger">
+                                            {{mobileNumberRequired}}</div>
+                                        <div *ngIf="f['mobileNumber'].errors?.['minlength']" class="text-danger">
+                                            {{mobileNumberValidate}}</div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="areaId" class="col-md-4 col-lg-3 col-form-label">Select area</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select class="form-select" formControlName="areaId" id="areaId">
+                                        <option *ngFor="let area of areaData;" value="{{area._id }}">
+                                            {{ area.areaName }}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="isSubmitted && f['areaId'].errors" class="help-block">
+                                        <div *ngIf="f['areaId'].errors['required']" class="text-danger">
+                                            {{areaNameRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button (click)="createNumber()" type="submit"
+                                    class="btn btn-primary m-2">Submit</button>
+                                <button type="reset" class="btn btn-secondary m-2"
+                                    (click)="backTolisting()">Cancel</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</main>
+
+<main *ngIf="mode === 'edit'" id="main" class="main" style="margin-top: 0px !important;">
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Add Number</h5>
+                        <form [formGroup]="updateNumberForm">
+                            <div class="row mb-3">
+                                <label for="mobileNumber" class="col-md-4 col-lg-3 col-form-label">Mobile
+                                    number</label>
+                                <div class="col-md-2 col-lg-2">
+                                    <select class="form-select small" formControlName="countyCode" id="countyCode">
+                                        <option *ngFor="let code of countryCodeList.codes;" value="{{code.dial_code}}">
+                                            {{ code.dial_code }}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="isSubmitted && b['countyCode'].errors" class="help-block">
+                                        <div *ngIf="b['countyCode'].errors['required']" class="text-danger">
+                                            {{countryCodeRequired}}</div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-7 col-lg-7">
+                                    <input name="mobileNumber" type="tel" formControlName="mobileNumber"
+                                        class="form-control" maxlength="10">
+                                    <div *ngIf="isSubmitted && b['mobileNumber'].errors" class="help-block">
+                                        <div *ngIf="b['mobileNumber'].errors['required']" class="text-danger">
+                                            {{mobileNumberRequired}}</div>
+                                        <div *ngIf="b['mobileNumber'].errors?.['minlength']" class="text-danger">
+                                            {{mobileNumberValidate}}</div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="areaId" class="col-md-4 col-lg-3 col-form-label">Select area</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select class="form-select" formControlName="areaId" id="areaId">
+                                        <option *ngFor="let area of areaData;" value="{{area._id }}">
+                                            {{ area.areaName }}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="isSubmitted && b['areaId'].errors" class="help-block">
+                                        <div *ngIf="b['areaId'].errors['required']" class="text-danger">
+                                            {{areaNameRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button (click)="updateNumber()" type="submit"
+                                    class="btn btn-primary m-2">Submit</button>
+                                <button type="reset" class="btn btn-secondary m-2"
+                                    (click)="backTolisting()">Cancel</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</main>

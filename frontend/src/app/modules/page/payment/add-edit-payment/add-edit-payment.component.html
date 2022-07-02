@@ -1,0 +1,78 @@
+<main *ngIf="mode === 'add'" id="main" class="main" style="margin-top: 0px !important;">
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Payment</h5>
+                        <form [formGroup]="newPaymentForm">
+
+                            <div class="row mb-3">
+                                <label for="purchaseId" class="col-md-4 col-lg-3 col-form-label">Farmer's purchase Id</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select class="form-select" formControlName="purchaseId" id="purchaseId" (change)="getAmount($event)">
+                                        <option *ngFor="let purchaseId of allPurchases;" value="{{purchaseId._id}}">
+                                            {{ purchaseId.purchaseId }}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="isSubmitted && f['purchaseId'].errors" class="help-block">
+                                        <div *ngIf="f['purchaseId'].errors['required']" class="text-danger">
+                                            {{purchaseIdRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="paymentMode" class="col-md-4 col-lg-3 col-form-label">Payment Mode</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select class="form-select" formControlName="paymentMode">
+                                        <option *ngFor="let mode of ['cash', 'cheque', 'online']" value="{{mode}}">
+                                            {{ mode }}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="isSubmitted && f['paymentMode'].errors" class="help-block">
+                                        <div *ngIf="f['paymentMode'].errors['required']" class="text-danger">
+                                            {{paymentModeRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="dateOfPurchase" class="col-md-4 col-lg-3 col-form-label">Date Of
+                                    Purchase</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="dateOfPurchase" type="date" formControlName="dateOfPurchase"
+                                        class="form-control">
+                                    <div *ngIf="isSubmitted && f['dateOfPurchase'].errors" class="help-block">
+                                        <div *ngIf="f['dateOfPurchase'].errors['required']" class="text-danger">
+                                            {{dateOfPurchaseRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="amount" class="col-md-4 col-lg-3 col-form-label">Amount</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="amount" type="text" formControlName="amount"
+                                        class="form-control">
+                                    <div *ngIf="isSubmitted && f['amount'].errors" class="help-block">
+                                        <div *ngIf="f['amount'].errors['required']" class="text-danger">
+                                            {{amountRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="text-center">
+                                <button (click)="createPayment()" type="submit"
+                                    class="btn btn-primary m-2">Submit</button>
+                                <button type="reset" class="btn btn-secondary m-2"
+                                    (click)="backTolisting()">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

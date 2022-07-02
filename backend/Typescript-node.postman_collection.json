@@ -1,0 +1,707 @@
+{
+	"info": {
+		"_postman_id": "531bf047-a14f-440b-982a-8d1064463edb",
+		"name": "Typescript-node",
+		"description": "The Natours APi contains endpoints for Tours, Users, and Reviews.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20142078"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get User by Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJfaWQiOiI2MjhmOGU4NmIzOTYyMDQwOThjYzI3YTkiLCJmaXJzdE5hbWUiOiJBYmhpc2hlayIsImxhc3ROYW1lIjoiUGF0ZWwiLCJlbWFpbCI6ImFiaGlzaGVrQGluZmlzdGFjay5jb20iLCJyb2xlSWQiOiI2MjhmODk5YjFmZjcxOTM4MmU3NjliMDQiLCJjcmVhdGVkQXQiOiIyMDIyLTA1LTI2VDE0OjI4OjIyLjUzNFoiLCJtb2RpZmllZEF0IjoiMjAyMi0wNS0yNlQxNDoyODoyMi41MzRaIn0sImlhdCI6MTY1MzU3NTg4MiwiZXhwIjoxNjUzNjYyMjgyfQ.aBUD8PeqzR4RLWnjiimG9V4w6BRimTa4qleBOl3sS9g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/users/628f8e86b396204098cc27a9?permissionId=628f899c1ff719382e769b10",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"628f8e86b396204098cc27a9"
+							],
+							"query": [
+								{
+									"key": "permissionId",
+									"value": "628f899c1ff719382e769b10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJhY3RpdmUiOnRydWUsIl9pZCI6IjYyOGY5ODFiYzhjODEwNTIxNTJlNTI1YSIsImZpcnN0TmFtZSI6IkFiaGlzaGVrIiwibGFzdE5hbWUiOiJQYXRlbCIsImVtYWlsIjoiYWJoaXNoZWtAaW5maXN0YWNrLmNvbSIsInJvbGVJZCI6IjYyOGY4OTliMWZmNzE5MzgyZTc2OWIwNCIsImNyZWF0ZWRBdCI6IjIwMjItMDUtMjZUMTU6MDk6MTUuOTY2WiIsIm1vZGlmaWVkQXQiOiIyMDIyLTA1LTI2VDE1OjA5OjE1Ljk2NloifSwiaWF0IjoxNjUzNTc3NzU2LCJleHAiOjE2NTM2NjQxNTZ9.kQ52oxeIVFX5Ywe_zSyUxvkJMoHwT9wuSj6JHT_YsFw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/users/?permissionId=628f899c1ff719382e769b10",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "permissionId",
+									"value": "628f899c1ff719382e769b10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"yeshh\",\n    \"email\": \"yesh@infistack.com\",\n    \"lastName\":\"patel\",\n    \"firstName\":\"abhi\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/users/628f8e86b396204098cc27a9?permissionId=628f899c1ff719382e769b10",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"628f8e86b396204098cc27a9"
+							],
+							"query": [
+								{
+									"key": "permissionId",
+									"value": "628f899c1ff719382e769b10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJfaWQiOiI2MjhmOTgxYmM4YzgxMDUyMTUyZTUyNWEiLCJmaXJzdE5hbWUiOiJBYmhpc2hlayIsImxhc3ROYW1lIjoiUGF0ZWwiLCJlbWFpbCI6ImFiaGlzaGVrQGluZmlzdGFjay5jb20iLCJyb2xlSWQiOiI2MjhmODk5YjFmZjcxOTM4MmU3NjliMDQiLCJjcmVhdGVkQXQiOiIyMDIyLTA1LTI2VDE1OjA5OjE1Ljk2NloiLCJtb2RpZmllZEF0IjoiMjAyMi0wNS0yNlQxNTowOToxNS45NjZaIn0sImlhdCI6MTY1MzU3Nzg3NiwiZXhwIjoxNjUzNjY0Mjc2fQ.9RnxEycc6fduZ68d-eAuPBEYvjQ_iQ1OCuhZF0pAET0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/users/628f8e86b396204098cc27a9?permissionId=628f899c1ff719382e769b10",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"628f8e86b396204098cc27a9"
+							],
+							"query": [
+								{
+									"key": "permissionId",
+									"value": "628f899c1ff719382e769b10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJfaWQiOiI2MjhmOGU4NmIzOTYyMDQwOThjYzI3YTkiLCJmaXJzdE5hbWUiOiJBYmhpc2hlayIsImxhc3ROYW1lIjoiUGF0ZWwiLCJlbWFpbCI6ImFiaGlzaGVrQGluZmlzdGFjay5jb20iLCJyb2xlSWQiOiI2MjhmODk5YjFmZjcxOTM4MmU3NjliMDQiLCJjcmVhdGVkQXQiOiIyMDIyLTA1LTI2VDE0OjI4OjIyLjUzNFoiLCJtb2RpZmllZEF0IjoiMjAyMi0wNS0yNlQxNDoyODoyMi41MzRaIn0sImlhdCI6MTY1MzU3NTg4MiwiZXhwIjoxNjUzNjYyMjgyfQ.aBUD8PeqzR4RLWnjiimG9V4w6BRimTa4qleBOl3sS9g",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"abhi\",\r\n    \"email\": \"abhi@infistack.com\",\r\n\t\"password\": \"abhi@111\",\r\n\t\"passwordConfirm\": \"abhi@111\",\r\n    \"lastName\":\"patel\",\r\n    \"firstName\":\"abhi\",\r\n    \"roleId\":\"628f899b1ff719382e769b04\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/users?permissionId=628f899c1ff719382e769b10",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users"
+							],
+							"query": [
+								{
+									"key": "permissionId",
+									"value": "628f899c1ff719382e769b10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Sign Up",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"jwt\", pm.response.json().token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"abhishek\",\n    \"email\": \"abhishek@infistack.com\",\n\t\"password\": \"abhishek@111\",\n\t\"passwordConfirm\": \"abhishek@111\",\n    \"lastName\":\"Patel\",\n    \"firstName\":\"Abhishek\",\n    \"roleId\":\"628f899b1ff719382e769b04\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/users/signup",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"jwt\", pm.response.json().token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"abhishek@infistack.com\",\n\t\"password\": \"abhishek@111\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/users/login",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"abhishek@infistack.com\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/users/forgotPassword",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"forgotPassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.environment.set(\"jwt\", pm.response.json().token);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"password\": \"newpassword\",\n\t\"passwordConfirm\": \"newpassword\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/users/resetPassword/1652bfc347b939d3d19cea352d231d6dbe6dfef0884e68e6c61629019c44b9ca",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"resetPassword",
+								"1652bfc347b939d3d19cea352d231d6dbe6dfef0884e68e6c61629019c44b9ca"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Current User Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.environment.set(\"jwt\", pm.response.json().token);"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"passwordCurrent\": \"pass1234\",\n\t\"password\": \"newpassword\",\n\t\"passwordConfirm\": \"newpassword\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/users/updateMyPassword",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"users",
+								"updateMyPassword"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Roles",
+			"item": [
+				{
+					"name": "Create Role",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"super\",\r\n    \"slug\":\"s\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/roles",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Role by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/roles/628f899b1ff719382e769b04",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"roles",
+								"628f899b1ff719382e769b04"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Role",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/roles/",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"roles",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Role",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/roles/628f6ec6bed98bff36c10c4f",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"roles",
+								"628f6ec6bed98bff36c10c4f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Role",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"super\",\n    \"slug\":\"s\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/roles/628f8d7eb396204098cc27a0",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"roles",
+								"628f8d7eb396204098cc27a0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Permissions",
+			"item": [
+				{
+					"name": "Create Permission",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJfaWQiOiI2MjhmNWE0ODNkYTlhNGMzNTUzZGI3NzYiLCJmaXJzdE5hbWUiOiJBZG1pbiIsImxhc3ROYW1lIjoiSW5maSIsImVtYWlsIjoiYWJoaXNoZWtAaW5maXN0YWNrLmNvbSIsInJvbGVJZCI6IjYyOGY0NTE2ZWU0YzMyODkxMGIyMDhmMSIsImNyZWF0ZWRBdCI6IjIwMjItMDUtMjZUMTA6NDU6MjguODg4WiIsIm1vZGlmaWVkQXQiOiIyMDIyLTA1LTI2VDEwOjQ1OjI4Ljg4OFoifSwiaWF0IjoxNjUzNTY0MjI2LCJleHAiOjE2NTM2NTA2MjZ9.YXph4fjMLs_25uF0UzCCzzXP5ZW7UWhQh1KARx5oC0k",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\" : \"user\",\r\n   \"resources_roles\": [{\r\n       \"roleId\":\"628f8d7eb396204098cc27a0\",\r\n       \"roles_name\":\"super\",\r\n       \"create\":false,\r\n       \"delete\":false,   \r\n       \"update\":true,\r\n       \"read\":false\r\n   }]   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/permissions",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"permissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Permission",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/permissions/",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"permissions",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Permission by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/permissions/628f682bf2bc64e1a7b341b7",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"permissions",
+								"628f682bf2bc64e1a7b341b7"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Permission",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}api/v1/permissions/628f682bf2bc64e1a7b341b7",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"permissions",
+								"628f682bf2bc64e1a7b341b7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Permission",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n       \"roleId\":\"628f899b1ff719382e769b04\",\n       \"create\":false,\n       \"delete\":false,   \n       \"update\":true,\n       \"read\":true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}api/v1/permissions/628f899c1ff719382e769b10",
+							"host": [
+								"{{URL}}api"
+							],
+							"path": [
+								"v1",
+								"permissions",
+								"628f899c1ff719382e769b10"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "localhost:5000/"
+		},
+		{
+			"key": "jwt",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJhY3RpdmUiOnRydWUsIl9pZCI6IjYyOGUyYjcxNzk0Zjc2MjliODhiMTNhMCIsImZpcnN0TmFtZSI6IkFkbWluIiwibGFzdE5hbWUiOiJJbmZpIiwiZW1haWwiOiJhZG1pbkBpbmZpc3RhY2suY29tIiwicm9sZUlkIjoiNjI4ZTJhZWM3OTRmNzYyOWI4OGIxMzljIiwiY3JlYXRlZEF0IjoiMjAyMi0wNS0yNVQxMzoxMzoyMS4yMDVaIiwibW9kaWZpZWRBdCI6IjIwMjItMDUtMjVUMTM6MTM6MjEuMjA1WiJ9LCJpYXQiOjE2NTM0ODQ0MDEsImV4cCI6MTY1MzU3MDgwMX0.fQ7VUmhE1hIL9MJ5bOk_Y1kgwTKd0WkDnBbAg7vrK60"
+		}
+	]
+}

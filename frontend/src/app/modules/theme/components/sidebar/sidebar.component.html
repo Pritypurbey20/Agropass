@@ -1,0 +1,105 @@
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+
+  <ul class="sidebar-nav" id="sidebar-nav">
+
+    <li class="nav-item">
+      <a class="nav-link " [routerLink]="['/user/dashboard']">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+
+    <a class="nav-link collapsed" data-bs-target="#people" data-bs-toggle="collapse" href="#">
+      <i class="bi bi-menu-button-wide"></i><span>People</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="people" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" [routerLink]="['/user/roles']">
+          <span>Roles</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" [routerLink]="['/user/permissions']">
+          <span>Permission</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" [routerLink]="['/user/user']">
+          <span>User</span>
+        </a>
+      </li>
+    </ul>
+
+    <a class="nav-link collapsed" data-bs-target="#modules" data-bs-toggle="collapse" href="#">
+      <i class="bi bi-menu-button-wide"></i><span>Modules</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="modules" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" [routerLink]="['/user/crops']">
+          <span>Crops</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" [routerLink]="['/user/farms']">
+          <span>Farms</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" [routerLink]="['/user/cropType']">
+          <span>Crop Type</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" [routerLink]="['/user/surveys']">
+          <span>Survey</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" [routerLink]="['/user/area']">
+          <span>Area</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" [routerLink]="['/user/distillery']">
+          <span>Distillery</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" [routerLink]="['/user/purchase']">
+          <span>Purchase</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" [routerLink]="['/user/number']">
+          <span>Number</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" [routerLink]="['/user/whatsapp']">
+          <span>Message</span>
+        </a>
+      </li>
+
+         <li class="nav-item">
+        <a class="nav-link collapsed" [routerLink]="['/user/payment']">
+          <span>Transactions</span>
+        </a>
+      </li>
+
+    </ul>
+  </ul>
+
+</aside><!-- End Sidebar-->

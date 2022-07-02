@@ -1,0 +1,367 @@
+<main *ngIf="mode === 'add'" id="main" class="main" style="margin-top: 0px !important;">
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Add New Purchase</h5>
+                        <form [formGroup]="newPurchaseForm">
+                            <div class="row mb-3">
+                                <label for="userName" class="col-md-4 col-lg-3 col-form-label">Purchased By</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select class="form-select" formControlName="userName" id="userName">
+                                        <option *ngFor="let user of userData;" value="{{user._id }}">
+                                            {{ user.firstName }}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="isSubmitted && f['userName'].errors" class="help-block">
+                                        <div *ngIf="f['userName'].errors['required']" class="text-danger">
+                                            {{userNameRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="farmer" class="col-md-4 col-lg-3 col-form-label">farmer</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select class="form-select" formControlName="farmer" id="farmer"
+                                        (change)="getFarmer($event)">
+                                        <option *ngFor="let user of userData;" value="{{user._id }}">
+                                            {{ user.firstName }}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="isSubmitted && f['farmer'].errors" class="help-block">
+                                        <div *ngIf="f['farmer'].errors['required']" class="text-danger">
+                                            {{farmerRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="quantity" class="col-md-4 col-lg-3 col-form-label">Quantity</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="quantity" type="number" formControlName="quantity" class="form-control"
+                                        required>
+                                    <div *ngIf="isSubmitted && f['quantity'].errors" class="help-block">
+                                        <div *ngIf="f['quantity'].errors['required']" class="text-danger">
+                                            {{quantityRequired}}</div>
+                                        <div *ngIf="f['quantity'].errors['pattern']" class="text-danger">
+                                            {{numbersOnly}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="quality" class="col-md-4 col-lg-3 col-form-label">Quality</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select class="form-select" formControlName="quality" id="farmer">
+                                        <option *ngFor="let number of [1,2,3,4,5,6,7,8,9,10]" value="{{number}}">
+                                            {{ number }}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="isSubmitted && f['quality'].errors" class="help-block">
+                                        <div *ngIf="f['quality'].errors['required']" class="text-danger">
+                                            {{qualityRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="pricePerUnit" class="col-md-4 col-lg-3 col-form-label">Price Per
+                                    Unit</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="pricePerUnit" type="number" formControlName="pricePerUnit"
+                                        class="form-control">
+                                    <div *ngIf="isSubmitted && f['pricePerUnit'].errors" class="help-block">
+                                        <div *ngIf="f['pricePerUnit'].errors['required']" class="text-danger">
+                                            {{pricePerUnitRequired}}</div>
+                                        <div *ngIf="f['pricePerUnit'].errors['pattern']" class="text-danger">
+                                            {{numbersOnly}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="inceptionDate" class="col-md-4 col-lg-3 col-form-label">Inception
+                                    Date</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="inceptionDate" type="date" formControlName="inceptionDate"
+                                        class="form-control">
+                                    <div *ngIf="isSubmitted && f['inceptionDate'].errors" class="help-block">
+                                        <div *ngIf="f['inceptionDate'].errors['required']" class="text-danger">
+                                            {{inceptionDateRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="inceptionResult" class="col-md-4 col-lg-3 col-form-label">Inception
+                                    Result</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <div>
+                                        <div class="custom-radio custom-radio2">
+                                            <input value=true id="inceptionResult" formControlName="inceptionResult"
+                                                type="radio" checked="" autocomplete="off"> &nbsp;
+                                            <label for="inceptionResult">Pass</label><br>
+                                            <input value=False id="inceptionResult" formControlName="inceptionResult"
+                                                type="radio" checked="" autocomplete="off"> &nbsp;
+                                            <label for="inceptionResult">Fail</label><br>
+                                        </div>
+
+                                    </div>
+                                    <div *ngIf="isSubmitted && f['inceptionResult'].errors" class="help-block">
+                                        <div *ngIf="f['inceptionResult'].errors['required']" class="text-danger">
+                                            {{inceptionResultRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="revisedPricePerUnit" class="col-md-4 col-lg-3 col-form-label">Revised Price
+                                    Per Unit</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="revisedPricePerUnit" type="number"
+                                        formControlName="revisedPricePerUnit" class="form-control">
+                                    <div *ngIf="isSubmitted && f['revisedPricePerUnit'].errors" class="help-block">
+                                        <div *ngIf="f['revisedPricePerUnit'].errors['pattern']" class="text-danger">
+                                            {{numbersOnly}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="notes" class="col-md-4 col-lg-3 col-form-label">Note</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="notes" type="text" formControlName="notes" class="form-control"
+                                        placeholder="Add a note">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="distilleryBatch" class="col-md-4 col-lg-3 col-form-label">Distillery Batch
+                                </label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select class="form-select" formControlName="distilleryBatch">
+                                        <option *ngFor="let distillery of distilleryData" value="{{distillery._id}}">
+                                            {{ distillery.distilleryBatchId }}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="isSubmitted && f['distilleryBatch'].errors" class="help-block">
+                                        <div *ngIf="f['distilleryBatch'].errors['required']" class="text-danger">
+                                            {{distilleryBatchRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="deliveryDateToDistillery" class="col-md-4 col-lg-3 col-form-label">Delivery
+                                    Date To Distillery</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="deliveryDateToDistillery" type="date"
+                                        formControlName="deliveryDateToDistillery" class="form-control">
+                                    <div *ngIf="isSubmitted && f['deliveryDateToDistillery'].errors" class="help-block">
+                                        <div *ngIf="f['deliveryDateToDistillery'].errors['required']"
+                                            class="text-danger">
+                                            {{deliveryDateToDistilleryRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <button (click)="createPurchase()" type="submit"
+                                    class="btn btn-primary m-2">Submit</button>
+                                <button type="reset" class="btn btn-secondary m-2"
+                                    (click)="backTolisting()">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+<main *ngIf="mode === 'edit'" id="main" class="main" style="margin-top: 0px !important;">
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Edit Purchase</h5>
+                        <form [formGroup]="UpdatePurchaseForm">
+                            <div class="row mb-3">
+                                <label for="userName" class="col-md-4 col-lg-3 col-form-label">Purchased By</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select class="form-select" formControlName="userName" id="userName">
+                                        <option *ngFor="let user of userData;" value="{{user._id }}">
+                                            {{ user.firstName }}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="isSubmitted && b['userName'].errors" class="help-block">
+                                        <div *ngIf="b['userName'].errors['required']" class="text-danger">
+                                            {{userNameRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="farmer" class="col-md-4 col-lg-3 col-form-label">farmer</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select class="form-select" formControlName="farmer" id="farmer"
+                                        (change)="getFarmer($event)">
+                                        <option *ngFor="let user of userData;" value="{{user._id }}">
+                                            {{ user.firstName }}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="isSubmitted && b['farmer'].errors" class="help-block">
+                                        <div *ngIf="b['farmer'].errors['required']" class="text-danger">
+                                            {{farmerRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="quantity" class="col-md-4 col-lg-3 col-form-label">Quantity</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="quantity" type="number" formControlName="quantity"
+                                        class="form-control">
+                                    <div *ngIf="isSubmitted && b['quantity'].errors" class="help-block">
+                                        <div *ngIf="b['quantity'].errors['required']" class="text-danger">
+                                            {{quantityRequired}}</div>
+                                        <div *ngIf="b['quantity'].errors['pattern']" class="text-danger">
+                                            {{numbersOnly}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="quality" class="col-md-4 col-lg-3 col-form-label">Quality</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select class="form-select" formControlName="quality" id="farmer">
+                                        <option *ngFor="let number of [1,2,3,4,5,6,7,8,9,10]" value="{{number}}">
+                                            {{ number }}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="isSubmitted && b['quality'].errors" class="help-block">
+                                        <div *ngIf="b['quality'].errors['required']" class="text-danger">
+                                            {{qualityRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="pricePerUnit" class="col-md-4 col-lg-3 col-form-label">Price Per
+                                    Unit</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="pricePerUnit" type="number" formControlName="pricePerUnit"
+                                        class="form-control">
+                                    <div *ngIf="isSubmitted && b['pricePerUnit'].errors" class="help-block">
+                                        <div *ngIf="b['pricePerUnit'].errors['required']" class="text-danger">
+                                            {{pricePerUnitRequired}}</div>
+                                        <div *ngIf="b['pricePerUnit'].errors['pattern']" class="text-danger">
+                                            {{numbersOnly}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="inceptionDate" class="col-md-4 col-lg-3 col-form-label">Inception
+                                    Date</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="inceptionDate" type="date" formControlName="inceptionDate"
+                                        class="form-control">
+                                    <div *ngIf="isSubmitted && b['inceptionDate'].errors" class="help-block">
+                                        <div *ngIf="b['inceptionDate'].errors['required']" class="text-danger">
+                                            {{inceptionDateRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="inceptionResult" class="col-md-4 col-lg-3 col-form-label">Inception
+                                    Result</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <div>
+                                        <div class="radio">
+                                            <input type="radio" name="inceptionResult" formControlName="inceptionResult"
+                                                value="true">&nbsp;
+                                            <label>Pass</label>
+                                        </div>
+                                        <div class="radio">
+                                            <input type="radio" name="inceptionResult" formControlName="inceptionResult"
+                                                value="false" checked="checked">&nbsp;
+                                            <label>Fail</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div *ngIf="isSubmitted && b['inceptionResult'].errors" class="help-block">
+                                    <div *ngIf="b['inceptionResult'].errors['required']" class="text-danger">
+                                        {{inceptionResultRequired}}</div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="revisedPricePerUnit" class="col-md-4 col-lg-3 col-form-label">Revised Price
+                                    Per Unit</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="revisedPricePerUnit" type="number"
+                                        formControlName="revisedPricePerUnit" class="form-control">
+                                    <div *ngIf="isSubmitted && b['revisedPricePerUnit'].errors" class="help-block">
+                                        <div *ngIf="b['revisedPricePerUnit'].errors['required']" class="text-danger">
+                                            {{revisedPriceRequired}}</div>
+                                        <div *ngIf="b['revisedPricePerUnit'].errors['pattern']" class="text-danger">
+                                            {{numbersOnly}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="notes" class="col-md-4 col-lg-3 col-form-label">Note</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="notes" type="text" formControlName="notes" class="form-control"
+                                        placeholder="Add a note">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="distilleryBatch" class="col-md-4 col-lg-3 col-form-label">Distillery Batch
+                                </label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select class="form-select" formControlName="distilleryBatch">
+                                        <option *ngFor="let distillery of distilleryData" value="{{distillery._id}}">
+                                            {{ distillery.distilleryBatchId }}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="isSubmitted && b['distilleryBatch'].errors" class="help-block">
+                                        <div *ngIf="b['distilleryBatch'].errors['required']" class="text-danger">
+                                            {{distilleryBatchRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="deliveryDateToDistillery" class="col-md-4 col-lg-3 col-form-label">Delivery
+                                    Date To Distillery</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="deliveryDateToDistillery" type="date"
+                                        formControlName="deliveryDateToDistillery" class="form-control">
+                                    <div *ngIf="isSubmitted && b['deliveryDateToDistillery'].errors" class="help-block">
+                                        <div *ngIf="b['deliveryDateToDistillery'].errors['required']"
+                                            class="text-danger">
+                                            {{deliveryDateToDistilleryRequired}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <button (click)="updatePurchase()" type="submit"
+                                    class="btn btn-primary m-2">Save</button>
+                                <button type="reset" class="btn btn-secondary m-2"
+                                    (click)="backTolisting()">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>I

@@ -1,0 +1,16 @@
+export const endPoints = {
+    user : '/api/v1/user',
+    utils : '/api/v1/utils',
+    roles : '/api/v1/roles',
+    permissions : '/api/v1/permissions',
+    crops : '/api/v1/crops',
+    farm : '/api/v1/farms',
+    survey : '/api/v1/surveys',
+    cropType : '/api/v1/cropTypes',
+    area : '/api/v1/area',
+    distillery : '/api/v1/distillery',
+    purchase : '/api/v1/purchase',
+    areaNumber : '/api/v1/areaNumber',
+    whatsApp : '/api/v1/whatsApp',
+    payment : '/api/v1/payment',
+}
